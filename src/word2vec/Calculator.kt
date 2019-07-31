@@ -22,7 +22,6 @@ class Calculator {
         inputWord: LinkedHashMap<String, String>,
         vectorMap: LinkedHashMap<String, ArrayList<Double>>
     ): Pair<LinkedHashMap<String, ArrayList<Double>>, String> {
-        // 単語ベクトルの演算
         val calculatedVector = LinkedHashMap<String, ArrayList<Double>>()
         var joinedWord = ""
         val calculatedScore = ArrayList<Double>()
@@ -52,7 +51,6 @@ class Calculator {
         joinedWord: String,
         calculatedVector: LinkedHashMap<String, ArrayList<Double>>
     ): LinkedHashMap<String, Double> {
-        // 入力した単語と他の単語のコサイン類似度を計算
         val cosBr = BufferedReader(FileReader(File(Setting.model)))
         var cosRank = LinkedHashMap<String, Double>()
         var cosStr = cosBr.readLine()

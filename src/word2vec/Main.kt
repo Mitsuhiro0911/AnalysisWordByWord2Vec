@@ -17,12 +17,12 @@ fun main(args: Array<String>) {
     val inputWord = linkedMapOf<String, String>()
     inputWord.put("感情", "Negative")
     inputWord.put("人間", "Positive")
-
+    // 入力した単語の素性ベクトル情報をサーチ
     val vectorMap = Parser().searchInputWordVector(inputWord)
-
+    // 単語ベクトルの演算
     val (calculatedVector, joinedWord) = cal.calWordVector(inputWord, vectorMap)
-
+    // 入力した単語と他の単語のコサイン類似度を計算
     val cosRank = cal.getWord2Vec(inputWord, joinedWord, calculatedVector)
-
+    // コサイン類似度の上位10位まで出力
     Sort().sortCosRank(cosRank)
 }
