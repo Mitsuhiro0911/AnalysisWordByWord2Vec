@@ -18,6 +18,9 @@ class Calculator {
         return this.cs.measure(DenseInstance(x), DenseInstance(y))
     }
 
+    /**
+     * 入力した単語の素性ベクトルの加算・減算を行う
+     */
     fun calWordVector(
         inputWord: LinkedHashMap<String, String>,
         vectorMap: LinkedHashMap<String, ArrayList<Double>>
@@ -46,6 +49,9 @@ class Calculator {
         return calculatedVector to joinedWord
     }
 
+    /**
+     * 加算・減算した入力単語と他の単語のコサイン類似度を計算
+     */
     fun getWord2Vec(
         inputWord: LinkedHashMap<String, String>,
         joinedWord: String,

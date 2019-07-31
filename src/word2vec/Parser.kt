@@ -5,6 +5,9 @@ import java.io.File
 import java.io.FileReader
 
 class Parser {
+    /**
+     * 入力した単語の素性ベクトルの情報を素性ベクトルファイルからサーチ
+     */
     fun searchInputWordVector(inputWord: LinkedHashMap<String, String>): LinkedHashMap<String, ArrayList<Double>> {
         val vectorMap = LinkedHashMap<String, ArrayList<Double>>()
         val searchBr = BufferedReader(FileReader(File(Setting.model)))
