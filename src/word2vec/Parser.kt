@@ -4,6 +4,9 @@ import java.io.BufferedReader
 import java.io.File
 import java.io.FileReader
 
+/**
+ * モデルファイル(Word2Vecで学習した素性ベクトル)をパースするクラス
+ */
 class Parser {
     /**
      * 入力した単語の素性ベクトルの情報を素性ベクトルファイルからサーチ

@@ -6,6 +6,9 @@ import java.io.BufferedReader
 import java.io.File
 import java.io.FileReader
 
+/**
+ * 素性ベクトルの計算を行うクラス
+ */
 class Calculator {
     private val cs = CosineSimilarity()
     /**
