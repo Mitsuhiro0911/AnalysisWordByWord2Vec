@@ -8,13 +8,24 @@ import java.io.FileReader
 
 fun main(args: Array<String>) {
     val cal = Calculator()
+    // 高性能モード・高速モードを選択し、それに応じたパラメータを設定
+    Setting.mode = "HIGH_PERFORMANCE"
+//    Setting.mode = "HIGH_SPEED"
+    if(Setting.mode == "HIGH_PERFORMANCE") {
+        Setting.model = "data/corpas/model_201907.vec"
+        Setting.vectorSize = 300
+    } else if(Setting.mode == "HIGH_SPEED") {
+        Setting.model = "data/corpas/model_abstract_201907.vec"
+        Setting.vectorSize = 200
+    }
+
+    // 入力する単語情報をセット
     val inputWord = linkedMapOf<String, String>()
-    inputWord.put("アンドロイド", "Negative")
-    inputWord.put("感情", "Positive")
+    inputWord.put("人間", "Positive")
+    inputWord.put("感情", "Negative")
 
     // 入力した単語の素性ベクトル情報をサーチ
-//    val searchBr = BufferedReader(FileReader(File("data/corpas/model_201907.vec")))
-    val searchBr = BufferedReader(FileReader(File("data/corpas/model_abstract_201907.vec")))
+    val searchBr = BufferedReader(FileReader(File(Setting.model)))
     var searchStr = searchBr.readLine()
     searchStr = searchBr.readLine()
     val vectorMap = LinkedHashMap<String, ArrayList<Double>>()
@@ -38,7 +49,7 @@ fun main(args: Array<String>) {
     val calculatedVector = LinkedHashMap<String, ArrayList<Double>>()
     var joinedWord = ""
     val calculatedScore = ArrayList<Double>()
-    for(i in 0 until 200){
+    for(i in 0 until Setting.vectorSize){
         calculatedScore.add(0.0)
     }
     for(vector in vectorMap) {
@@ -58,8 +69,7 @@ fun main(args: Array<String>) {
     println(calculatedVector)
 
     // 入力した単語と他の単語のコサイン類似度を計算
-//    val cosBr = BufferedReader(FileReader(File("data/corpas/model_201907.vec")))
-    val cosBr = BufferedReader(FileReader(File("data/corpas/model_abstract_201907.vec")))
+    val cosBr = BufferedReader(FileReader(File(Setting.model)))
     var cosRank = LinkedHashMap<String, Double>()
     var cosStr = cosBr.readLine()
     cosStr = cosBr.readLine()
@@ -90,5 +100,16 @@ fun main(args: Array<String>) {
         if(i > 9) {
             break
         }
+    }
+}
+
+class Setting {
+    companion object {
+        // 高性能モード・高速モードを区別する
+        var mode = ""
+        // 読み込む素性ベクトルのファイルパス
+        var model = ""
+        // 読み込む素性ベクトルの次元数
+        var vectorSize = 0
     }
 }
