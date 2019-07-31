@@ -9,8 +9,8 @@ import java.io.FileReader
 fun main(args: Array<String>) {
     val cal = Calculator()
     val inputWord = linkedMapOf<String, String>()
-    inputWord.put("アンドロイド", "Positive")
-    inputWord.put("感情", "Negative")
+    inputWord.put("アンドロイド", "Negative")
+    inputWord.put("感情", "Positive")
 
     // 入力した単語の素性ベクトル情報をサーチ
 //    val searchBr = BufferedReader(FileReader(File("data/corpas/model_201907.vec")))
@@ -49,7 +49,9 @@ fun main(args: Array<String>) {
                 calculatedScore[i] = calculatedScore[i] + vector.value.get(i)
             }
         } else if(inputWord.get(vector.key) == "Negative"){
-
+            for (i in 0 until vector.value.size) {
+                calculatedScore[i] = calculatedScore[i] - vector.value.get(i)
+            }
         }
     }
     calculatedVector.put(joinedWord, calculatedScore)
