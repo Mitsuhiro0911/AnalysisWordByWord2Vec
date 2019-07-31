@@ -8,6 +8,9 @@ import java.io.FileReader
 
 fun main(args: Array<String>) {
     val cal = Calculator()
+    val inputWord = linkedMapOf<String, String>()
+    inputWord.put("アンドロイド", "Positive")
+    inputWord.put("感情", "Negative")
 
     // 入力した単語の素性ベクトル情報をサーチ
 //    val searchBr = BufferedReader(FileReader(File("data/corpas/model_201907.vec")))
@@ -18,7 +21,8 @@ fun main(args: Array<String>) {
     while(searchStr != null){
 //        println(searchStr)
         val split = searchStr.split(" ")
-        if(split[0] == "アンドロイド" || split[0] == "感情") {
+//        if(split[0] == "アンドロイド" || split[0] == "感情") {
+        if(inputWord.containsKey(split[0])) {
             val scoreList = ArrayList<Double>()
             for (i in 1 until split.size - 1) {
                 scoreList.add(split.get(i).toDouble())
@@ -39,8 +43,13 @@ fun main(args: Array<String>) {
     }
     for(vector in vectorMap) {
         joinedWord = joinedWord + vector.key
-        for(i in 0 until vector.value.size) {
-            calculatedScore[i] = calculatedScore[i] + vector.value.get(i)
+        // Positiveの場合、ベクトルを加算。Nevativeの場合、ベクトルを減算。
+        if(inputWord.get(vector.key) == "Positive") {
+            for (i in 0 until vector.value.size) {
+                calculatedScore[i] = calculatedScore[i] + vector.value.get(i)
+            }
+        } else if(inputWord.get(vector.key) == "Negative"){
+
         }
     }
     calculatedVector.put(joinedWord, calculatedScore)
@@ -55,8 +64,9 @@ fun main(args: Array<String>) {
     while(cosStr != null){
         val scoreList = ArrayList<Double>()
         val split = cosStr.split(" ")
-        // 演算に用いた単語は除外
-        if (split[0] != "アンドロイド" && split[0] != "感情") {
+        // 演算に用いた単語はコサイン類似度計算の対象から除外
+//        if (split[0] != "アンドロイド" && split[0] != "感情") {
+        if (!inputWord.containsKey(split[0])) {
             for (i in 1 until split.size - 1) {
                 scoreList.add(split.get(i).toDouble())
             }
