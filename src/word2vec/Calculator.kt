@@ -18,22 +18,25 @@ class Calculator {
         return this.cs.measure(DenseInstance(x), DenseInstance(y))
     }
 
-    fun calWordVector(inputWord:LinkedHashMap<String, String>, vectorMap: LinkedHashMap<String, ArrayList<Double>>): Pair<LinkedHashMap<String, ArrayList<Double>>, String> {
+    fun calWordVector(
+        inputWord: LinkedHashMap<String, String>,
+        vectorMap: LinkedHashMap<String, ArrayList<Double>>
+    ): Pair<LinkedHashMap<String, ArrayList<Double>>, String> {
         // 単語ベクトルの演算
         val calculatedVector = LinkedHashMap<String, ArrayList<Double>>()
         var joinedWord = ""
         val calculatedScore = ArrayList<Double>()
-        for(i in 0 until Setting.vectorSize){
+        for (i in 0 until Setting.vectorSize) {
             calculatedScore.add(0.0)
         }
-        for(vector in vectorMap) {
+        for (vector in vectorMap) {
             joinedWord = joinedWord + vector.key
             // Positiveの場合、ベクトルを加算。Nevativeの場合、ベクトルを減算。
-            if(inputWord.get(vector.key) == "Positive") {
+            if (inputWord.get(vector.key) == "Positive") {
                 for (i in 0 until vector.value.size) {
                     calculatedScore[i] = calculatedScore[i] + vector.value.get(i)
                 }
-            } else if(inputWord.get(vector.key) == "Negative"){
+            } else if (inputWord.get(vector.key) == "Negative") {
                 for (i in 0 until vector.value.size) {
                     calculatedScore[i] = calculatedScore[i] - vector.value.get(i)
                 }
@@ -44,13 +47,17 @@ class Calculator {
         return calculatedVector to joinedWord
     }
 
-    fun getWord2Vec(inputWord: LinkedHashMap<String, String>, joinedWord: String, calculatedVector: LinkedHashMap<String, ArrayList<Double>>): LinkedHashMap<String, Double> {
+    fun getWord2Vec(
+        inputWord: LinkedHashMap<String, String>,
+        joinedWord: String,
+        calculatedVector: LinkedHashMap<String, ArrayList<Double>>
+    ): LinkedHashMap<String, Double> {
         // 入力した単語と他の単語のコサイン類似度を計算
         val cosBr = BufferedReader(FileReader(File(Setting.model)))
         var cosRank = LinkedHashMap<String, Double>()
         var cosStr = cosBr.readLine()
         cosStr = cosBr.readLine()
-        while(cosStr != null){
+        while (cosStr != null) {
             val scoreList = ArrayList<Double>()
             val split = cosStr.split(" ")
             // 演算に用いた単語はコサイン類似度計算の対象から除外

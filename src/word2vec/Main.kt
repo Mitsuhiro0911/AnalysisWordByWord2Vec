@@ -5,10 +5,10 @@ fun main(args: Array<String>) {
     // 高性能モード・高速モードを選択し、それに応じたパラメータを設定
 //    Setting.mode = "HIGH_PERFORMANCE"
     Setting.mode = "HIGH_SPEED"
-    if(Setting.mode == "HIGH_PERFORMANCE") {
+    if (Setting.mode == "HIGH_PERFORMANCE") {
         Setting.model = "data/corpas/model_201907.vec"
         Setting.vectorSize = 300
-    } else if(Setting.mode == "HIGH_SPEED") {
+    } else if (Setting.mode == "HIGH_SPEED") {
         Setting.model = "data/corpas/model_abstract_201907.vec"
         Setting.vectorSize = 200
     }
