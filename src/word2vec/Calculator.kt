@@ -35,13 +35,14 @@ class Calculator {
             calculatedScore.add(0.0)
         }
         for (vector in vectorMap) {
-            joinedWord = joinedWord + vector.key
             // Positiveの場合、ベクトルを加算。Nevativeの場合、ベクトルを減算。
             if (inputWord.get(vector.key) == "Positive") {
+                joinedWord = "${joinedWord}＋${vector.key}"
                 for (i in 0 until vector.value.size) {
                     calculatedScore[i] = calculatedScore[i] + vector.value.get(i)
                 }
             } else if (inputWord.get(vector.key) == "Negative") {
+                joinedWord = "${joinedWord}ー${vector.key}"
                 for (i in 0 until vector.value.size) {
                     calculatedScore[i] = calculatedScore[i] - vector.value.get(i)
                 }
