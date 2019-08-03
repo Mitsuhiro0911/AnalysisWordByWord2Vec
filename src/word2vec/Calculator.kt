@@ -69,7 +69,6 @@ class Calculator {
             val scoreList = ArrayList<Double>()
             val split = cosStr.split(" ")
             // 演算に用いた単語はコサイン類似度計算の対象から除外
-//        if (split[0] != "アンドロイド" && split[0] != "感情") {
             if (!inputWord.containsKey(split[0])) {
                 for (i in 1 until split.size - 1) {
                     scoreList.add(split.get(i).toDouble())
@@ -77,10 +76,8 @@ class Calculator {
                 val word = calculatedVector.get(joinedWord)!!.toDoubleArray()
                 val compareWord = scoreList.toDoubleArray()
                 val cosSimilarity = calCosSimilarity(word, compareWord)
-//            println(cosSimilarity)
                 cosRank.put(split[0], cosSimilarity)
             }
-//        cosRank = cosRank.toList().sortedByDescending { it.second }.toMap()
             cosStr = cosBr.readLine()
         }
         cosBr.close()

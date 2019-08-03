@@ -17,9 +17,7 @@ class Parser {
         var searchStr = searchBr.readLine()
         searchStr = searchBr.readLine()
         while (searchStr != null) {
-//        println(searchStr)
             val split = searchStr.split(" ")
-//        if(split[0] == "アンドロイド" || split[0] == "感情") {
             if (inputWord.containsKey(split[0])) {
                 val scoreList = ArrayList<Double>()
                 for (i in 1 until split.size - 1) {
