@@ -1,12 +1,13 @@
 package word2vec
 
+//TODO:.vecファイルの単語部分だけスプリットしてコーパスを作る。軽量化できるので高速でパースできる。該当行を調べ、元コーパスの該当行だけ抽出する。
 fun main(args: Array<String>) {
     val cal = Calculator()
     // 高性能モード・高速モードを選択し、それに応じたパラメータを設定
-//    Setting.mode = "HIGH_PERFORMANCE"
-    Setting.mode = "HIGH_SPEED"
+    Setting.mode = "HIGH_PERFORMANCE"
+//    Setting.mode = "HIGH_SPEED"
     if (Setting.mode == "HIGH_PERFORMANCE") {
-        Setting.model = "data/corpas/model_201907.vec"
+        Setting.model = "data/corpas/high_performance_model/model_201907.vec"
         Setting.vectorSize = 300
     } else if (Setting.mode == "HIGH_SPEED") {
         Setting.model = "data/corpas/model_abstract_201907.vec"
