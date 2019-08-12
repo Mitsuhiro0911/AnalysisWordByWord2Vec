@@ -9,7 +9,11 @@ class Setting {
         var mode = ""
         // 読み込む素性ベクトルのファイルパス
         var model = ""
+        // モデルの単語情報のみを記載したファイルのパス
+        var modelWordText = ""
         // 読み込む素性ベクトルの次元数
         var vectorSize = 0
+        // 分割されたモデルファイルの行数
+        var splitModelLineNum = 0
     }
 }

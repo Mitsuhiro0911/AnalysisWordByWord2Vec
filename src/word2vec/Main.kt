@@ -8,10 +8,14 @@ fun main(args: Array<String>) {
 //    Setting.mode = "HIGH_SPEED"
     if (Setting.mode == "HIGH_PERFORMANCE") {
         Setting.model = "data/corpas/high_performance_model/model_201907.vec"
+        Setting.modelWordText = "data/corpas/model_201907_word.txt"
         Setting.vectorSize = 300
+        Setting.splitModelLineNum = 10000
     } else if (Setting.mode == "HIGH_SPEED") {
-        Setting.model = "data/corpas/model_abstract_201907.vec"
+        Setting.model = "data/corpas/high_speed_model/model_abstract_201907.vec"
+        Setting.modelWordText = "data/corpas/model_abstract_201907_word.txt"
         Setting.vectorSize = 200
+        Setting.splitModelLineNum = 2000
     }
 
     // 入力する単語情報をセット
