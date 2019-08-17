@@ -15,5 +15,7 @@ class Setting {
         var vectorSize = 0
         // 分割されたモデルファイルの行数
         var splitModelLineNum = 0
+        // 分割されたモデルファイルの数
+        var splitFileNum = 0
     }
 }

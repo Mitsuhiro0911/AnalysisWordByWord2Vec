@@ -1,6 +1,6 @@
 package word2vec
 
-//TODO:.vecファイルの単語部分だけスプリットしてコーパスを作る。軽量化できるので高速でパースできる。該当行を調べ、元コーパスの該当行だけ抽出する。
+//TODO:Calculator.ktのgetWord2Vecを高速化したい。ファイル読み込みをコルーチンで非同期処理。非同期処理内部でcosRankにputすると情報が落ちそうなので、asyncでputする情報を返し、awaitで受け取る
 fun main(args: Array<String>) {
     val cal = Calculator()
     // 高性能モード・高速モードを選択し、それに応じたパラメータを設定
@@ -11,11 +11,13 @@ fun main(args: Array<String>) {
         Setting.modelWordText = "data/corpas/model_201907_word.txt"
         Setting.vectorSize = 300
         Setting.splitModelLineNum = 10000
+        Setting.splitFileNum = 101
     } else if (Setting.mode == "HIGH_SPEED") {
         Setting.model = "data/corpas/high_speed_model/model_abstract_201907.vec"
         Setting.modelWordText = "data/corpas/model_abstract_201907_word.txt"
         Setting.vectorSize = 200
         Setting.splitModelLineNum = 2000
+        Setting.splitFileNum = 79
     }
 
     // 入力する単語情報をセット
